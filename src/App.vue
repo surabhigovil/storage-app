@@ -46,13 +46,13 @@ export default {
       if (this.file)
         console.log("file is present");
       if (this.file) {
-        Storage.put(`userFiles/${this.$refs.file.files[0].name}`, this.$refs.file.files[0],{ contentType: this.$refs.file.files[0].type })
+        Storage.put(`userFiles/${this.$refs.file.files[0].name}`, this.$refs.file.files[0],{ level: 'private', contentType: this.$refs.file.files[0].type })
         .then(result => console.log(result)) 
         .catch(err => console.log(err));
       }
     },
     getFiles() {
-      Storage.list("userFiles/", {level: 'public'}).then((res) => {
+      Storage.list("userFiles/", {level: 'private'}).then((res) => {
         console.log("Access here url:", res)
         this.url = res
         const fileAccessURL = Storage.get(res.key, {download: true});
@@ -60,7 +60,10 @@ export default {
         res.forEach(item => {
           // console.log("ite key", item.key)
           this.userFiles = item.key
-          Storage.get(item.key, {download: true}).then((result) => {
+          Storage.get(item.key, {
+            download: true,
+            level: 'private',
+            }).then((result) => {
             console.log("get", result)
             let mimeType = result.ContentType
             let fileName = result.fileName
