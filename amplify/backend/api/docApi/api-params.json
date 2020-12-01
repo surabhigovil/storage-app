@@ -1,0 +1,45 @@
+{
+    "paths": [
+        {
+            "name": "/docs",
+            "lambdaFunction": "docsLambda",
+            "privacy": {
+                "protected": true,
+                "auth": [
+                    "/POST",
+                    "/GET",
+                    "/PUT",
+                    "/PATCH",
+                    "/DELETE"
+                ],
+                "unauth": [
+                    "/GET"
+                ]
+            },
+            "policyResourceName": "/docs"
+        }
+    ],
+    "resourceName": "docApi",
+    "apiName": "docApi",
+    "functionArns": [
+        {
+            "lambdaFunction": "docsLambda"
+        }
+    ],
+    "privacy": {
+        "auth": 1,
+        "unauth": 1,
+        "authRoleName": "amplify-amplifyapptest-dev-173723-authRole",
+        "unAuthRoleName": "amplify-amplifyapptest-dev-173723-unauthRole"
+    },
+    "dependsOn": [
+        {
+            "category": "function",
+            "resourceName": "docsLambda",
+            "attributes": [
+                "Name",
+                "Arn"
+            ]
+        }
+    ]
+}

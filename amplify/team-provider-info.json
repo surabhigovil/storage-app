@@ -1,0 +1,30 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-amplifyapptest-dev-173723-authRole",
+      "UnauthRoleArn": "arn:aws:iam::644563956343:role/amplify-amplifyapptest-dev-173723-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::644563956343:role/amplify-amplifyapptest-dev-173723-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-amplifyapptest-dev-173723-deployment",
+      "UnauthRoleName": "amplify-amplifyapptest-dev-173723-unauthRole",
+      "StackName": "amplify-amplifyapptest-dev-173723",
+      "StackId": "arn:aws:cloudformation:us-east-1:644563956343:stack/amplify-amplifyapptest-dev-173723/c68745b0-2ebe-11eb-912b-0a7876a5eab3",
+      "AmplifyAppId": "d24cwz9bcofpt0"
+    },
+    "categories": {
+      "auth": {
+        "amplifyapptest5506eb24": {
+          "hostedUIProviderCreds": "[{\"ProviderName\":\"Google\",\"client_id\":\"142549191369-6rip6lgkkdsg2brh1e64o8uutv43v6du.apps.googleusercontent.com\",\"client_secret\":\"vi3mcAAI6ximyVBe68VHKyz4\"}]",
+          "googleClientId": "142549191369-6rip6lgkkdsg2brh1e64o8uutv43v6du.apps.googleusercontent.com"
+        }
+      },
+      "function": {
+        "amplifyapptest5506eb24CustomMessage": {
+          "REDIRECTURL": "http://localhost:8080",
+          "EMAILSUBJECT": "Confirm you account ",
+          "EMAILMESSAGE": "Welcome"
+        }
+      }
+    }
+  }
+}
