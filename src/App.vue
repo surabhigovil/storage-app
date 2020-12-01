@@ -10,6 +10,9 @@
         <label>File
           <input type="file" id="file" ref="file" v-on:change="onFileChange()"/>
         </label>
+        <label>Uploaded Files:
+          <ul><li v-for="u in url" v-bind:key="u">{{ u.key }}</li></ul>
+        </label>
         <amplify-sign-out></amplify-sign-out>
       </div>
     </amplify-authenticator>
@@ -27,6 +30,7 @@ export default {
   data() {
     return {
       user: { },
+      url: {}
     }
   },
   components: {
@@ -43,14 +47,15 @@ export default {
         .catch(err => console.log(err));
       }
     },
-    getAllFiles() {
-      Storage.list(`userFiles/`)
-      .then((result) => { 
-        console.log("result",result);
-        var json = JSON.parse(result);
-        alert(json.result.key);
-      }).catch(err => console.log(err))
-		},
+    getFiles() {
+      Storage.list("userFiles/", {level: 'public'}).then((res) => {
+        console.log("Access here url:", res)
+        this.url = res
+        res.forEach(item => {
+          console.log("ite key", item.key)
+        })
+      }).catch(err => console.log(err));
+    },
   },  
   created() {
     // authentication state managament
@@ -59,7 +64,8 @@ export default {
       if (state === AuthState.SignedIn) {
         this.user = user;
       }
-    })
+    }),
+    this.getFiles() 
   }
 }
 </script>

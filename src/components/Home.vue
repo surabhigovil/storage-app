@@ -1,5 +1,5 @@
 <template>
-  <p>Ihome!</p>
+  <p>I am home!</p>
 </template>
 
 <script>
