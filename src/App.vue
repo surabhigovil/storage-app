@@ -13,6 +13,9 @@
         <label>Uploaded Files:
           <ul><li v-for="u in url" v-bind:key="u">{{ u.key }}</li></ul>
         </label>
+        <div v-for="userFile in userFiles" v-bind:key="userFile" class='list-item'>
+          <p class="name">{{ userFile }}</p>
+        </div>
         <amplify-sign-out></amplify-sign-out>
       </div>
     </amplify-authenticator>
@@ -30,7 +33,8 @@ export default {
   data() {
     return {
       user: { },
-      url: {}
+      url: {},
+      userFiles: {}
     }
   },
   components: {
@@ -51,13 +55,22 @@ export default {
       Storage.list("userFiles/", {level: 'public'}).then((res) => {
         console.log("Access here url:", res)
         this.url = res
+        const fileAccessURL = Storage.get(res.key, {download: true});
+        console.log(fileAccessURL)
         res.forEach(item => {
-          console.log("ite key", item.key)
+          // console.log("ite key", item.key)
+          this.userFiles = item.key
+          Storage.get(item.key, {download: true}).then((result) => {
+            console.log("get", result)
+            let mimeType = result.ContentType
+            let fileName = result.fileName
+            console.log(mimeType, fileName)
+          })
         })
       }).catch(err => console.log(err));
     },
   },  
-  created() {
+  async created() {
     // authentication state managament
     onAuthUIStateChange((state, user) => {
       // set current user and load data after login
